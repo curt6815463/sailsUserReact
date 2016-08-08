@@ -6,6 +6,14 @@
  */
 
 module.exports = {
-	
+	// create: function(req,res){
+	//     var username = req.body.username;
+	//     User.create({
+	//         username
+	//     }).then({
+	//         function(err){
+	//             res.redirect("");
+	//         }
+	//     })
+	// }
 };
-
