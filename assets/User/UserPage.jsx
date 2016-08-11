@@ -7,9 +7,10 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      userData : null
+      userData : []
     }
     this.ajaxSendData = this.ajaxSendData.bind(this);
+    this.ajaxResetData = this.ajaxResetData.bind(this);
   }
   
   
@@ -17,12 +18,22 @@ class UserPage extends React.Component {
     $.ajax({
       url : 'user/' + path,
 
+      error:function(error){
+        console.log(error);
+      }
+      
+    })
+  }
+  
+  ajaxResetData(){
+    $.ajax({
+      url : 'user/',
+
       success: function(data) {
         this.setState({
           userData : data
         })
-        
-      },
+      }.bind(this),
       error:function(error){
         console.log(error);
       }
@@ -34,8 +45,8 @@ class UserPage extends React.Component {
     return (
       <div>
         <h1>User Page</h1>
-
-        <UserAddBtn  callback={this.ajaxSendData}/>
+        <UserList data={this.state.userData} setData={this.ajaxResetData} callback={this.ajaxSendData}/>
+        <UserAddBtn setData={this.ajaxResetData}  callback={this.ajaxSendData}/>
       </div>
     );
   }

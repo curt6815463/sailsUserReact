@@ -11,7 +11,10 @@ class UserAddBtn extends React.Component {
   createUser(){
     var username = this.refs.userInput.value;
     this.props.callback('create?username='+username);
+    this.props.setData();
   }
+  
+  
   
   render() {
     return (
